@@ -34,7 +34,7 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@v10
+        uses: astral-sh/setup-uv@v10.3.0
 
       - name: Install Python packages
         run: uv sync
