@@ -1,0 +1,9 @@
+---
+title: "このサイトについて"
+---
+
+このサイトは [Quarto](https://quarto.org) で作り、GitHub Pages で公開しています。
+原稿とコードは GitHub のリポジトリで管理しています。
+
+- 論文のPDF版や arXiv・OSF Preprints の情報は、公開したらここに追記します。
+- 引用する場合は、リポジトリの CITATION.cff（GitHub の「Cite this repository」）を使ってください。

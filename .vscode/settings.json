@@ -1,0 +1,31 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+  "files.encoding": "utf8",
+  "files.exclude": {
+    "**/.quarto": true
+  },
+  "latex-workshop.latex.autoBuild.run": "never",
+  "latex-workshop.latex.recipe.default": "first",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "upLaTeX (latexmk + manuscript/latexmkrc)",
+      "tools": ["latexmk-uplatex"]
+    },
+    {
+      "name": "XeLaTeX (latexmk)",
+      "tools": ["latexmk-xelatex"]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk-uplatex",
+      "command": "latexmk",
+      "args": ["-pdfdvi", "-interaction=nonstopmode", "-synctex=1", "-file-line-error", "%DOC%"]
+    },
+    {
+      "name": "latexmk-xelatex",
+      "command": "latexmk",
+      "args": ["-xelatex", "-interaction=nonstopmode", "-synctex=1", "-file-line-error", "%DOC%"]
+    }
+  ]
+}

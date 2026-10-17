@@ -1,0 +1,12 @@
+---
+title: "Research Notes"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+page-layout: full
+title-block-banner: true
+---
+
+研究の進捗と論文を公開するサイトです。論文のHTML版は上のメニューの「論文」から読めます。

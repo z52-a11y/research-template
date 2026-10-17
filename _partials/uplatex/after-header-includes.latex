@@ -1,0 +1,16 @@
+% ------------------------------------------------------------------
+% upLaTeX 用 after-header-includes.latex
+% Quarto 既定の内容に pxjahyper を追加し、PDF のしおり（目次）に
+% 日本語を正しく出す。ドライバ（dvipdfmx）はクラスオプションで指定する。
+% ------------------------------------------------------------------
+\usepackage{bookmark}
+\usepackage{pxjahyper}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{$if(urlstyle)$$urlstyle$$else$same$endif$}
+$if(links-as-notes)$
+% Make links footnotes instead of hotlinks:
+\DeclareRobustCommand{\href}[2]{#2\footnote{\url{#1}}}
+$endif$
+$if(verbatim-in-note)$
+\VerbatimFootnotes % allow verbatim text in footnotes
+$endif$

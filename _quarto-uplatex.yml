@@ -1,0 +1,38 @@
+# ==============================================================
+# プロファイル: uplatex
+#   日本語PDF（upLaTeX + dvipdfmx）。投稿規定が (u)pLaTeX を求める和文誌向け。
+#
+#   書き出し:  quarto render --profile uplatex
+#   出力:      _output/uplatex/manuscript/paper.pdf
+#              manuscript/paper.tex（投稿用に残す。keep-tex）
+#
+#   仕組み:
+#     1. Quarto の LaTeX ひな形のうち、upLaTeX で動かない部分（fontspec,
+#        unicode-math, microtype）を _partials/uplatex/ のファイルで差し替える。
+#     2. pdf-engine を latexmk にし、-pdfdvi（DVI 経由で PDF を作る）を指定する。
+#        uplatex と dvipdfmx の指定は manuscript/latexmkrc に書いてある。
+#   投稿先のクラスファイルを使うときは documentclass と classoption を変える。
+# ==============================================================
+
+project:
+  type: default
+  output-dir: _output/uplatex
+  render:
+    - manuscript/paper.qmd
+
+format:
+  pdf:
+    documentclass: jsarticle
+    classoption: [uplatex, dvipdfmx]
+    papersize: a4
+    number-sections: true
+    default-image-extension: pdf
+    from: markdown+east_asian_line_breaks
+    pdf-engine: latexmk
+    pdf-engine-opts:
+      - "-pdfdvi"
+    template-partials:
+      - _partials/uplatex/fonts.latex
+      - _partials/uplatex/font-settings.latex
+      - _partials/uplatex/after-header-includes.latex
+    keep-tex: true

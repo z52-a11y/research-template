@@ -1,0 +1,11 @@
+# latexmk の設定（upLaTeX + dvipdfmx）
+#
+# Quarto の uplatex プロファイル（pdf-engine: latexmk, -pdfdvi）が
+# このフォルダで latexmk を実行するときに読み込まれる。
+# Cursor の LaTeX Workshop で manuscript/paper.tex を手動で組むときにも使われる。
+
+$latex     = 'uplatex %O %S';
+$bibtex    = 'upbibtex %O %S';
+$makeindex = 'upmendex %O -o %D %S';
+$dvipdf    = 'dvipdfmx %O -o %D %S';
+$pdf_mode  = 3;    # 3 = DVI を作ってから $dvipdf で PDF にする

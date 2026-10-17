@@ -1,0 +1,83 @@
+---
+title: "論文タイトル"
+subtitle: "サブタイトル（不要なら削除）"
+author:
+  - name: 山田 太郎
+    affiliations:
+      - name: 〇〇大学
+    email: taro@example.com
+date: today
+date-format: "YYYY年M月D日"
+abstract: |
+  ここに概要を書く。このファイルは書き出し先（HTML・LuaLaTeX・upLaTeX・arXiv）を
+  変えても同じ原稿を使えるように作ってある。書き出し先ごとの設定は
+  プロジェクト直下の `_quarto-*.yml` にまとめてある。
+keywords: [Quarto, 再現可能な研究]
+bibliography: references.bib
+---
+
+# はじめに {#sec-intro}
+
+本文はこのように Markdown で書く。文献は [@knuth1984literate] のように引用し、
+文献の一覧は末尾に自動で作られる。図・表・式には番号が付き、本文から
+@fig-wave、@tbl-params、@eq-model のように参照できる。
+
+# 方法 {#sec-method}
+
+対象とする信号を @eq-model で表す。
+
+$$
+y(t) = a \sin(\omega t)
+$$ {#eq-model}
+
+計算に使ったパラメータを @tbl-params に示す。
+
+| 記号 | 意味 | 値 |
+|:----:|------|---:|
+| $a$ | 振幅 | 1.0 |
+| $\omega$ | 角周波数 | 1.0 |
+
+: 計算に使ったパラメータ {#tbl-params}
+
+# 結果 {#sec-result}
+
+@fig-wave は Python で計算した結果である。コードは原稿の中にあり、
+書き出しのたびに図が作り直される（結果は `_freeze/` に保存される）。
+
+```{python}
+#| label: fig-wave
+#| fig-cap: "正弦波と余弦波（Python で計算して作図）"
+#| echo: false
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# matplotlib の軸ラベルに日本語を使うときは日本語フォントの設定が必要。
+# ここでは英字のラベルにしている。
+t = np.linspace(0, 2 * np.pi, 200)
+fig, ax = plt.subplots(figsize=(5, 3))
+ax.plot(t, np.sin(t), label="sin t")
+ax.plot(t, np.cos(t), label="cos t", linestyle="--")
+ax.set_xlabel("t")
+ax.legend()
+plt.show()
+```
+
+<!--
+Mathematica の図を入れる例:
+  1. notebooks/mathematica-example.ipynb を Wolfram Language カーネルで実行する
+     （manuscript/figures/mma-trig.pdf と .png が書き出される）
+  2. 次の行のコメントを外す。拡張子を書かないと、HTML では .png、
+     PDF では .pdf が自動で使われる（各プロファイルの default-image-extension）。
+
+![Mathematica で描いた三角関数](figures/mma-trig){#fig-mma width="70%"}
+-->
+
+# 考察 {#sec-discussion}
+
+ここに考察を書く。
+
+# 参考文献 {.unnumbered}
+
+::: {#refs}
+:::

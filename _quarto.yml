@@ -1,0 +1,38 @@
+# ==============================================================
+# 共通設定（すべてのプロファイルで使う）
+#
+#   quarto render                     … website（既定。ブログ＋論文のHTML版）
+#   quarto render --profile lualatex  … 日本語PDF（LuaLaTeX）
+#   quarto render --profile uplatex   … 日本語PDF（upLaTeX + dvipdfmx）
+#   quarto render --profile arxiv     … arXiv 提出用PDF（XeLaTeX、.tex を残す）
+#
+# 注意: project.render と format は各プロファイル（_quarto-*.yml）だけに書く。
+#       ここに書くと、すべてのプロファイルに混ざってしまう。
+# ==============================================================
+
+project:
+  title: "research-template"
+
+profile:
+  default: website
+  group:
+    - [website, lualatex, uplatex, arxiv]
+
+# 計算結果をローカルで「凍結」して _freeze/ に保存する（_freeze/ はコミットする）。
+# ソースが変わった文書だけ再計算される。
+execute:
+  freeze: auto
+
+# 図表番号などの見出しを日本語にする。
+# lang: ja を使わずに指定しているのは、PDF で babel を読み込ませないため。
+language:
+  crossref-fig-title: "図"
+  crossref-tbl-title: "表"
+  crossref-lst-title: "コード"
+  crossref-eq-prefix: "式"
+  crossref-sec-prefix: "節"
+  crossref-apx-prefix: "付録"
+  section-title-abstract: "概要"
+  section-title-references: "参考文献"
+  section-title-appendices: "付録"
+  section-title-footnotes: "脚注"

@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "quarto.quarto",
+    "ms-python.python",
+    "ms-toolsai.jupyter",
+    "james-yu.latex-workshop",
+    "anthropic.claude-code",
+    "openai.chatgpt"
+  ]
+}

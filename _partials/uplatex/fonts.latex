@@ -1,0 +1,11 @@
+% ------------------------------------------------------------------
+% upLaTeX（e-upTeX + dvipdfmx）用 fonts.latex
+% Quarto 既定の fonts.latex は pdfTeX 以外のエンジンで unicode-math
+% （fontspec）を読み込むため、upLaTeX ではエラーになる。
+% ここでは和文を文書クラス（jsarticle など）に任せ、欧文は
+% T1 エンコーディングの Latin Modern で組む。
+% ------------------------------------------------------------------
+\usepackage{iftex}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}

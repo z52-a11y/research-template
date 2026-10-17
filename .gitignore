@@ -1,0 +1,32 @@
+# Quarto
+/.quarto/
+/_site/
+/_output/
+*.quarto_ipynb
+_environment.local
+# 注意: _freeze/ は無視しない（計算結果を共有して CI で使うため）
+
+# 原稿の中間ファイル（keep-tex や LaTeX の補助ファイル）
+/manuscript/*.tex
+/manuscript/*_files/
+*.aux
+*.log
+*.out
+*.toc
+*.dvi
+*.xdv
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+
+# Python
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

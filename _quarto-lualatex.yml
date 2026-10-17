@@ -1,0 +1,28 @@
+# ==============================================================
+# プロファイル: lualatex
+#   日本語PDF（LuaLaTeX + LuaTeX-ja）。配布用・OSF Preprints 用。
+#
+#   書き出し:  quarto render --profile lualatex
+#   出力:      _output/lualatex/manuscript/paper.pdf
+#
+#   ※ arXiv は LuaLaTeX に対応していない。arXiv には arxiv プロファイルを使う。
+#   ※ 初回は LuaLaTeX がフォントの一覧を作るため数分かかる。
+# ==============================================================
+
+project:
+  type: default
+  output-dir: _output/lualatex
+  render:
+    - manuscript/paper.qmd
+
+format:
+  pdf:
+    pdf-engine: lualatex
+    documentclass: ltjsarticle
+    papersize: a4
+    number-sections: true
+    default-image-extension: pdf
+    from: markdown+east_asian_line_breaks
+    # 和文フォントを変えるとき（既定は TeX Live 同梱の原ノ味フォント）。
+    # 例: Windows の游明朝・游ゴシックを使う
+    # luatexjapresetoptions: [yu-win10]

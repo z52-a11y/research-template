@@ -1,0 +1,34 @@
+# 引用情報（Citation File Format）
+# - GitHub のリポジトリページに「Cite this repository」として表示される。
+# - Zenodo と連携すると、Release ごとにこの内容で DOI 付きの版が作られる。
+# - リリース前に version と date-released を更新する。
+# - orcid は自分の ORCID iD に置き換える（持っていなければ行ごと削除）。
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "論文タイトル"
+type: software
+authors:
+  - family-names: "Yamada"
+    given-names: "Taro"
+    affiliation: "〇〇大学"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+version: "0.1.0"
+date-released: "2026-10-12"
+license: CC-BY-4.0
+repository-code: "https://github.com/your-name/your-repo"
+abstract: "このリポジトリの概要を1〜3文で書く。"
+keywords:
+  - Quarto
+  - reproducible research
+
+# arXiv などで公開したら、論文そのものを優先して引用してもらうための設定を追加できる:
+# preferred-citation:
+#   type: article
+#   title: "論文タイトル"
+#   authors:
+#     - family-names: "Yamada"
+#       given-names: "Taro"
+#   year: 2026
+#   identifiers:
+#     - type: doi
+#       value: "10.48550/arXiv.XXXX.XXXXX"

@@ -1,0 +1,11 @@
+% ------------------------------------------------------------------
+% upLaTeX 用 font-settings.latex
+% fontspec 系の設定（mainfont など）と microtype は upLaTeX では
+% 使えないため読み込まない。欧文フォントを変えたいときは
+% fontfamily（例: newtxtext）を指定する。
+% ------------------------------------------------------------------
+$if(fontfamily)$
+\usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
+$endif$
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}

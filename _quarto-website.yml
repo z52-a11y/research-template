@@ -1,0 +1,39 @@
+# ==============================================================
+# プロファイル: website（既定）
+#   ブログと論文のHTML版を GitHub Pages で公開する。
+#
+#   手元で確認:  quarto preview
+#   書き出し:    quarto render            （_site/ に出力）
+#   公開:        main ブランチに push すると .github/workflows/publish.yml が動く
+# ==============================================================
+
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - about.qmd
+    - "posts/**/*.qmd"
+    - manuscript/paper.qmd
+
+lang: ja
+
+website:
+  title: "Research Notes"
+  # RSS フィードや OGP を使うときは公開URLを設定する
+  # site-url: https://<ユーザー名>.github.io/<リポジトリ名>/
+  navbar:
+    left:
+      - href: index.qmd
+        text: ホーム
+      - href: manuscript/paper.qmd
+        text: 論文
+      - href: about.qmd
+        text: このサイトについて
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    default-image-extension: png
+    from: markdown+east_asian_line_breaks

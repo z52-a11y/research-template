@@ -1,0 +1,61 @@
+# main ブランチへの push で website プロファイルを描画し、GitHub Pages に公開する。
+#
+# 事前設定（リポジトリごとに1回）:
+#   Settings → Pages → Build and deployment → Source を「GitHub Actions」にする。
+#
+# 計算結果は _freeze/ にコミット済みのものを使う。凍結されていない原稿だけ
+# Python で計算する（Mathematica はここでは使えないため、結果はファイルで取り込む）。
+name: Publish website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # テンプレート用リポジトリ自身では実行しない（テンプレートから作ったリポジトリでだけ動く）
+    if: ${{ !github.event.repository.is_template }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v10
+
+      - name: Install Python packages
+        run: uv sync
+
+      - name: Render website
+        run: quarto render --profile website
+        env:
+          QUARTO_PYTHON: ${{ github.workspace }}/.venv/bin/python
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

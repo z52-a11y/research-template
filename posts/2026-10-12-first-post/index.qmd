@@ -1,0 +1,14 @@
+---
+title: "最初の記事"
+date: 2026-10-12
+categories: [お知らせ]
+description: "ブログの動作確認用の記事です。"
+---
+
+ブログ記事は `posts/日付-短い名前/index.qmd` という形で追加します。
+画像は同じフォルダに置き、`![説明](image.png)` で入れます。
+
+::: {.callout-note}
+記事を書いたら `quarto preview` で確認し、main ブランチに push すると
+GitHub Actions がサイトを更新します。
+:::

@@ -1,0 +1,51 @@
+# ==============================================================
+# プロファイル: arxiv
+#   arXiv 提出用。arXiv は LuaLaTeX に非対応なので XeLaTeX を使い、
+#   提出に必要な .tex を残す（keep-tex）。
+#
+#   描画と提出用 zip の作成:  uv run python tools/arxiv_bundle.py
+#   描画だけ:                 quarto render --profile arxiv
+#   出力:  _output/arxiv/manuscript/paper.pdf   … 確認用
+#          _output/arxiv/arxiv-submission.zip    … arXiv にアップロードする
+#
+#   arXiv の決まり:
+#     - フォントは「フォント名」ではなく「ファイル名」で指定する（下の CJKmainfont など）
+#     - 提出画面の TeX processor では xelatex を選ぶ
+# ==============================================================
+
+project:
+  type: default
+  output-dir: _output/arxiv
+  render:
+    - manuscript/paper.qmd
+
+# 英語論文向けに図表の見出しを英語に戻す（日本語のままでよければ、この language を削除）
+language:
+  crossref-fig-title: "Figure"
+  crossref-tbl-title: "Table"
+  crossref-lst-title: "Listing"
+  crossref-eq-prefix: "Equation"
+  crossref-sec-prefix: "Section"
+  crossref-apx-prefix: "Appendix"
+  section-title-abstract: "Abstract"
+  section-title-references: "References"
+  section-title-appendices: "Appendices"
+  section-title-footnotes: "Footnotes"
+
+format:
+  pdf:
+    pdf-engine: xelatex
+    documentclass: article
+    papersize: a4
+    number-sections: true
+    keep-tex: true
+    default-image-extension: pdf
+    from: markdown+east_asian_line_breaks
+    # 日本語が混じっても組めるよう、和文フォントをファイル名で指定する
+    # （どちらも arXiv の TeX Live 2025 に含まれる）
+    CJKmainfont: HaranoAjiMincho-Regular.otf
+    CJKoptions:
+      - BoldFont=HaranoAjiGothic-Medium.otf
+    # tools/arxiv_bundle.py が「arxiv プロファイルで作った .tex か」を確認する目印
+    include-in-header:
+      - text: "% quarto-profile: arxiv"
