@@ -11,8 +11,11 @@ Quarto で論文を書き、同じ原稿から次の4種類を出力するため
 
 ## 必要なもの
 
-Quarto、TeX Live（フル）、uv（Python）、Git。Mathematica は任意です。
+Quarto、TeX Live、uv と python.org 版の Python 3.13、Git。Mathematica は任意です。
 導入手順は別紙の手順書を参照してください。
+
+Windows のスマート アプリ コントロールをオンにしている場合は、uv が入れる Python ではなく python.org 版を使い、
+`jupyter` などのコマンドは `uv run python -m …` の形で実行します（`.venv\Scripts` の .exe が止められることがあるため）。
 
 ## はじめ方（Windows）
 
@@ -37,7 +40,7 @@ _quarto-<名前>.yml     プロファイルごとの設定（website / lualatex 
 _partials/uplatex/     upLaTeX 用に差し替える LaTeX ひな形
 manuscript/            原稿 paper.qmd、文献 references.bib、図 figures/、データ data/、latexmkrc
 posts/                 ブログ記事
-notebooks/             試行錯誤用ノートブック（Python / Wolfram Language）
+notebooks/             試行錯誤用（Python のノートブック、Wolfram Language のスクリプト .wls）
 tools/                 setup.ps1（初期設定）、arxiv_bundle.py（arXiv 用 zip）
 docs/                  AI エージェント向けの詳細ルール
 AGENTS.md / CLAUDE.md  AI エージェント共通の基本ルール
@@ -48,7 +51,8 @@ CITATION.cff           引用情報（GitHub と Zenodo が読む）
 
 `execute: freeze: auto` により、計算結果は `_freeze/` に保存されます。
 原稿を変えたら手元で `quarto render` してから、`_freeze/` も含めてコミットしてください。
-Mathematica の結果は図やデータとして `manuscript/figures/` などに書き出して取り込みます。
+Mathematica は `notebooks/mathematica-example.wls` のように `.wls` に書き、リポジトリ直下で
+`wolframscript -file notebooks\mathematica-example.wls` を実行して、図やデータを `manuscript/figures/` などに書き出して取り込みます。
 
 ## DOI（Zenodo）
 

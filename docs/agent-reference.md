@@ -19,13 +19,15 @@ AGENTS.md から必要なときだけ参照する詳細ルール。人間が読�
 
 - `manuscript/` 原稿（`paper.qmd`）、文献（`references.bib`）、図（`figures/`）、データ（`data/`）
 - `posts/` ブログ記事（`posts/YYYY-MM-DD-name/index.qmd`）
-- `notebooks/` 試行錯誤用のノートブック（Python、Wolfram Language）
+- `notebooks/` 試行錯誤用（Python のノートブック、Wolfram Language のスクリプト `.wls`）
 - `tools/` 補助スクリプト（`setup.ps1`、`arxiv_bundle.py`）
 
 ## 計算と凍結（freeze）
 
 - `execute: freeze: auto` により、計算結果は `_freeze/` に保存される。原稿を変えたら手元で render し、`_freeze/` もコミットする。
-- GitHub Actions は Python を用意するが、Mathematica は使えない。Mathematica の結果は必ずファイルに書き出して取り込む。
+- GitHub Actions は Python を用意するが、Mathematica は使えない。Mathematica は `.wls` を手元で `wolframscript -file` で実行し、結果を必ずファイルに書き出して取り込む。
+- Mathematica の Jupyter カーネルは使わない（Cursor のノートブックでは動かない）。`.wls` で画面に出す文字は英語にする。
+- Jupyter のコマンドは `python -m` で実行する（例: `uv run python -m jupyter_client.kernelspecapp list`）。`uv run jupyter …` は `.venv\Scripts\jupyter.exe` を通るので、Windows のスマート アプリ コントロールに止められることがある。
 - Quarto の1文書で使えるカーネルは1つ。原稿の中のコードは Python に統一する。
 
 ## arXiv
