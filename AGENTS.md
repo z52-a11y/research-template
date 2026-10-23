@@ -5,7 +5,7 @@
 - 確認: 原稿を変えたら `quarto render --profile lualatex` が通ることを確かめる。
 - 計算: Python は原稿の中か `notebooks/` で行う。Mathematica は `notebooks/*.wls` に書いて `wolframscript -file` で実行し、結果を図やデータに書き出して `manuscript/figures/` などから読み込む。
 - コマンド: Jupyter などは `uv run python -m <モジュール>` の形で実行する。`.venv\Scripts` の .exe は Windows に止められることがある。
-- 図: 図の画像を手で直さない。生成元のコードやノートブックを直す。
+- 図: 新しい図は Python（matplotlib）で作る。図の画像を手で直さず、生成元（Python、ノートブック、`.wls`、`manuscript/figures/*.gp`）を直す。gnuplot の図はリポジトリ直下で `gnuplot <ファイル>` を実行して作り直す。
 - 引用: 文献は `manuscript/references.bib` に追加して `[@key]` で引用する。実在を確認できない文献を作らない。
 - 生成物: `_site/`・`_output/`・`*.tex` は手で編集しない。`_freeze/` は render で更新してコミットする。
 - 秘密情報: APIキーやパスワードをファイルに書かない。
