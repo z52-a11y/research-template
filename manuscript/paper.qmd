@@ -65,7 +65,7 @@ plt.show()
 
 <!--
 Mathematica の図を入れる例:
-  1. notebooks/mathematica-example.ipynb を Wolfram Language カーネルで実行する
+  1. リポジトリ直下で wolframscript -file notebooks\mathematica-example.wls を実行する
      （manuscript/figures/mma-trig.pdf と .png が書き出される）
   2. 次の行のコメントを外す。拡張子を書かないと、HTML では .png、
      PDF では .pdf が自動で使われる（各プロファイルの default-image-extension）。
